@@ -74,7 +74,34 @@ JavaScript簡稱JS。
   + 匿名函數:
     + JS允許沒有名字的函數。
     + 即使給函數名字但還是用表達式來宣告的話，名字是函數內部使用的，對外部呼叫來說沒屁用。
-    
+  
+  + 箭頭函數:
+    + ES6的新招式。蠻多不太容易記得的規定，但讓程式碼很短。只能多看範例多想原理。
+    + 箭頭函數不會被提升，所以也屬於表達式。
+    ```javascript
+    // 表達式宣告一個square的函數。
+    // 會回傳物件(使這個函數成為一個物件)。
+    // 這個宣告不會運行，宣告部分要寫在呼叫之前。也就是不會被「提升」。
+    // function後面不寫名字叫做匿名函數，通常給名字是讓內部呼叫用的，否則寫了也是白寫。
+    var my_square = function (number) {
+      return number * number;
+    }
+    // 呼叫方式
+    let my_answer=my_square(2);
+    console.log(my_answer);
+    ```
+    ```javascript
+    // 表達式宣告一個square的箭頭函數。
+    // 會回傳物件(使這個函數成為一個物件)。
+    // 這個宣告不會運行，宣告部分要寫在呼叫之前。也就是不會被「提升」。
+    var my_square = (number) => {
+      return number * number;
+    };
+
+    // 呼叫方式
+    let my_answer=my_square(2);
+    console.log(my_answer); 
+    ```
     
 
 ## 運行特色:  
