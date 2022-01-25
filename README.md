@@ -1,6 +1,82 @@
 # JavaScript_notes
 JavaScript簡稱JS。
 
+## 函數特色:
+  + 宣告函數(使用陳述式):
+    + 大部分程式語言用的方法，用「function」關鍵字去宣告這個函數叫什麼、要做什麼事情。
+    ```javascript
+    // 陳述式宣告一個square的函數(宣告寫在呼叫之前)。
+    // 這不會回傳東西，但會在全域出現這個函數可以被使用。
+    // 這個宣告不會運行，位置在哪都一樣，當Script被完整載入後就會被宣告到全域中。被稱作「提升」。
+    function square(number) {
+      let result= number * number;
+      return result;
+    }
+    // 呼叫方式
+    let my_answer=square(2);
+    console.log(my_answer);
+    ```
+     ```javascript
+     // 呼叫方式
+    let my_answer=square(2);
+    console.log(my_answer);
+    // 陳述式宣告一個square的函數(宣告寫在呼叫之後)。
+    // 這不會回傳東西，但會在全域出現這個函數可以被使用。
+    // 這個宣告不會運行，位置在哪都一樣，當Script被完整載入後就會被宣告到全域中。被稱作「提升」。
+    function square(number) {
+      let result= number * number;
+      return result;
+    }
+    
+    ```
+  + 函數表達式:
+    + JS的奇怪建立函數的方法，偏偏比較常用，看起來跟宣告函數超像。 
+    ```javascript
+    // 表達式宣告一個square的函數。
+    // 會回傳物件(使這個函數成為一個物件)。
+    // 這個宣告不會運行，宣告部分要寫在呼叫之前。也就是不會被「提升」。
+    var my_square = function square(number) {
+      return number * number;
+    }
+    // 呼叫方式
+    let my_answer=my_square(2);
+    console.log(my_answer);
+    ```
+    ```javascript
+    // 表達式宣告一個square的函數。
+    // 會回傳物件(使這個函數成為一個物件)。
+    // 這個宣告不會運行，宣告部分要寫在呼叫之前。也就是不會被「提升」。
+    // function後面不寫名字叫做匿名函數，通常給名字是讓內部呼叫用的，否則寫了也是白寫。
+    var my_square = function (number) {
+      return number * number;
+    }
+    // 呼叫方式
+    let my_answer=my_square(2);
+    console.log(my_answer);
+    ```
+    ```javascript
+    // 用括號包住代表直接當物件，內部就是表達式宣告。這是有名字的情況。
+    // 直接呼叫該函數的方式如下:
+    let my_answer=(function square(number) {
+      return number * number;
+    })(2);
+    console.log(my_answer);
+    ```
+    ```javascript
+    // 用括號包住代表直接當物件，內部就是表達式宣告。這是匿名的情況，效果跟有名字一樣，所以很多時候都用匿名函數就足夠了。
+    // 直接呼叫該函數的方式如下:
+    let my_answer=(function (number) {
+      return number * number;
+    })(2);
+    console.log(my_answer);
+    ```
+    
+  + 匿名函數:
+    + JS允許沒有名字的函數。
+    + 即使給函數名字但還是用表達式來宣告的話，名字是函數內部使用的，對外部呼叫來說沒屁用。
+    
+    
+
 ## 運行特色:  
   + Single Thread (單線程)  
   + Synchronous (同步)
