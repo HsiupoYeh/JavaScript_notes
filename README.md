@@ -120,7 +120,7 @@ JavaScript簡稱JS。
   + 非同步的程式碼風格:
     + 舊式的 callback 風格
     + 新式的 promise 風格。本質上，它代表瀏覽器述說著：「我承諾我會盡快給予你一個答覆」，因此名稱就叫做「 promise 」。
-    ```
+    ```javascript
     // 用new可以把promise建構出來，自帶3個常用的方法
     const my_Promise = new Promise();
 
@@ -128,17 +128,20 @@ JavaScript簡稱JS。
     my_Promise.catch();   // Promise 回傳失敗
     my_Promise.finally(); // 非同步執行完畢（無論是否正確完成）
     ```
-    ```
+    ```javascript
     // 正確建構的時候要提供「executor函數」作為輸入參數。「executor函數」可想像著裡面是另外一個執行緒在做事。
     // 「executor函數」必須是雙參數，第一個參數習慣性叫resolve，第二個叫reject。當然也可以改，但通常都不改。
+    // 另一個執行緒的工作就是大括號裡的程式碼，也是逐行運行只是在另一個執行緒，會運行直到resolve或reject被呼叫。
+    // resolve與reject就像是一個return，會停止後續的程式碼工作。
+    // resolve的輸入會變成then方法的輸入，reject的輸入會變成catch方法的輸入。
     // 按照建議函數不需要名字，用匿名函數就好了，參數固定要兩個。箭頭函數誕生後更建議寫成箭頭函數。
     // 匿名函數方式
-    const my_Promise = new Promise( function(resolve,reject ){ ... });
+    const my_Promise = new Promise( function(resolve,reject){ ... });
     // 箭頭函數方式
-    const my_Promise = new Promise( (resolve,reject ) = > { ... });
+    const my_Promise = new Promise( (resolve,reject) = > { ... });
     ```
-    ```
-    // 神奇的鏈結方法:
+    ```javascript
+    // 神奇的鏈結方法(then):
     const my_Promise = new Promise(function(resolve, reject) {
       // 成功(資料 value 向下一個鏈結then傳遞)
       resolve('success');
@@ -146,8 +149,9 @@ JavaScript簡稱JS。
       reject('error');
     });
     
-    // then方法裡面要放一個匿名函數，箭頭函數誕生後建議用箭頭函數撰寫。
+    // then方法與catch方法裡面要放一個匿名函數，箭頭函數誕生後建議用箭頭函數撰寫。
     // then方法只取出promise成功運行到resolve函數時，傳進resolve的東西，然後塞進匿名函數的變數中
+    // catch方法只取出promise成功運行到resolve函數時，傳進reject的東西，然後塞進匿名函數的變數中
     my_Promise.then( (resolve_result) => {
         console.log(resolve_result);
     })
@@ -155,8 +159,8 @@ JavaScript簡稱JS。
         console.log(reject_result);
     });    
     ```
-    ```
-    // 神奇的鏈結方法:
+    ```javascript
+    // 神奇的鏈結方法(catch):
     const my_Promise = new Promise(function(resolve, reject) {
       // 失敗(錯誤 reason 向下一個鏈結catch傳遞)
       reject('error');
@@ -164,8 +168,9 @@ JavaScript簡稱JS。
       resolve('success');      
     });
     
-    // then方法裡面要放一個匿名函數，箭頭函數誕生後建議用箭頭函數撰寫。
+    // then方法與catch方法裡面要放一個匿名函數，箭頭函數誕生後建議用箭頭函數撰寫。
     // then方法只取出promise成功運行到resolve函數時，傳進resolve的東西，然後塞進匿名函數的變數中
+    // catch方法只取出promise成功運行到resolve函數時，傳進reject的東西，然後塞進匿名函數的變數中
     my_Promise.then( (resolve_result) => {
         console.log(resolve_result);
     })
