@@ -120,3 +120,22 @@ JavaScript簡稱JS。
   + 非同步的程式碼風格:
     + 舊式的 callback 風格
     + 新式的 promise 風格。本質上，它代表瀏覽器述說著：「我承諾我會盡快給予你一個答覆」，因此名稱就叫做「 promise 」。
+    ```
+    // 用new可以把promise建構出來，自帶3個常用的方法
+    const my_Promise = new Promise();
+
+    my_Promise.then();    // Promise 回傳正確
+    my_Promise.catch();   // Promise 回傳失敗
+    my_Promise.finally(); // 非同步執行完畢（無論是否正確完成）
+    ```
+    ```
+    // 正確建構的時候要提供「executor函數」作為輸入參數。「executor函數」可想像著裡面是另外一個執行緒在做事。
+    // 「executor函數」必須是雙參數，第一個參數習慣性叫resolve，第二個叫reject。當然也可以改，但通常都不改。
+    // 按照建議函數不需要名字，用匿名函數就好了，參數固定要兩個。箭頭函數誕生後更建議寫成箭頭函數。
+    // 匿名函數方式
+    const my_Promise = new Promise( function(resolve,reject ){ ... });
+    // 箭頭函數方式
+    const my_Promise = new Promise( (resolve,reject ) = > { ... });
+
+
+    ```
