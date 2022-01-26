@@ -136,6 +136,41 @@ JavaScript簡稱JS。
     const my_Promise = new Promise( function(resolve,reject ){ ... });
     // 箭頭函數方式
     const my_Promise = new Promise( (resolve,reject ) = > { ... });
-
-
     ```
+    ```
+    // 神奇的鏈結方法:
+    const my_Promise = new Promise(function(resolve, reject) {
+      // 成功(資料 value 向下一個鏈結then傳遞)
+      resolve('success');
+      // 失敗(錯誤 reason 向下一個鏈結catch傳遞)
+      reject('error');
+    });
+    
+    // then方法裡面要放一個匿名函數，箭頭函數誕生後建議用箭頭函數撰寫。
+    // then方法只取出promise成功運行到resolve函數時，傳進resolve的東西，然後塞進匿名函數的變數中
+    my_Promise.then( (resolve_result) => {
+        console.log(resolve_result);
+    })
+    .catch( (reject_result) => {
+        console.log(reject_result);
+    });    
+    ```
+    ```
+    // 神奇的鏈結方法:
+    const my_Promise = new Promise(function(resolve, reject) {
+      // 失敗(錯誤 reason 向下一個鏈結catch傳遞)
+      reject('error');
+      // 成功(資料 value 向下一個鏈結then傳遞)
+      resolve('success');      
+    });
+    
+    // then方法裡面要放一個匿名函數，箭頭函數誕生後建議用箭頭函數撰寫。
+    // then方法只取出promise成功運行到resolve函數時，傳進resolve的東西，然後塞進匿名函數的變數中
+    my_Promise.then( (resolve_result) => {
+        console.log(resolve_result);
+    })
+    .catch( (reject_result) => {
+        console.log(reject_result);
+    });    
+    ```
+    > 可以想像reject、resolve兩個參數就像是特別的return命令，分別用來傳東西給then與catch的匿名函數。
