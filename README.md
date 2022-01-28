@@ -191,12 +191,12 @@ JavaScript簡稱JS。
           return x;
       }
       // 呼叫方式，呼叫非同步函數後會回傳一個Promise。
-      var add_one_promise=add_one(5);
+      let add_one_promise=add_one(5);
       console.log(add_one_promise);
       ```
       ```javascript
       // 呼叫方式，呼叫非同步函數後會回傳一個Promise。
-      var add_one_promise=add_one(5);
+      let add_one_promise=add_one(5);
       console.log(add_one_promise);
       // 陳述式宣告一個add_one的非同步函數(宣告寫在呼叫之後)。
       // 這不會回傳東西，但會在全域出現這個函數可以被使用。
@@ -233,3 +233,17 @@ JavaScript簡稱JS。
       let add_one_promise=my_add_one(5);
       console.log(add_one_promise);
       ```
++ 箭頭函數:
+    ```javascript
+    // 表達式宣告一個箭頭函數。
+    // 會回傳物件(使這個函數成為一個物件)。
+    // 這個宣告不會運行，宣告部分要寫在呼叫之前。也就是不會被「提升」。
+    var my_add_one = async (x) => {
+        x=x+1;
+        return x;
+    }
+
+    // 呼叫方式
+    let add_one_promise=my_add_one(5);
+    console.log(add_one_promise);
+    ```
