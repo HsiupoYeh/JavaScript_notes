@@ -254,3 +254,51 @@ JavaScript簡稱JS。
   > 可以想成在主線程之外async另開了一個單執行緒，若裡面產生一個promise等同又再開一個執行續，此時兩個執行續會各自一起運行著。  
   > 但在async函數中出現await關鍵字控制的promise時，async執行緒(可想像為父層)暫停運行，等待await控制的promise(可想像為子層)回傳結果後，才回到async執行緒繼續運行。  
   > 因此await會讓程式碼看起來類似父層下的子層工作都是同步的(阻塞的)，但其實只是被卡住而照順序的非同步函數，但都不會影響真正的主線程，使得不熟悉callback與promise的人也能容易讀懂與設計。
+
+## Fetch API
++ 號稱用來取代XMLHttpRequest的新技術。
++ 瀏覽器原生支援。
++ 基於Promise語法結構開發。
++ 可以配合async、await使用。
+    
+    ```javascript
+    // 普通的fetch方法範例(匿名函數)，以GET方法取得JSON回傳內容:
+    fetch("https://jsonplaceholder.typicode.com/todos/1")
+    .then(function(fetch_response_promise) {
+        return fetch_response_promise.json();
+    })
+    .then(function(myJson){
+	    console.log(myJson)
+    })
+    ```
+    ```javascript
+    // 普通的fetch方法範例(箭頭函數)，以GET方法取得JSON回傳內容:
+    fetch("https://jsonplaceholder.typicode.com/todos/1")
+    .then((fetch_response_promise) => { 
+        return fetch_response_promise.json();  
+    })
+    .then((myJson) => {
+	    console.log(myJson)
+    })
+    ```
+    ```javascript
+    // 改寫為async/await形式(匿名函數)
+    (async function() {
+        // fetch取得遠端資源
+        const fetch_response_promise = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+        // 使用 fetch_response_promise.json() 將資源轉為 JSON 格式
+        const myJson = await fetch_response_promise.json();
+        console.log(myJson);
+    })();
+    ```
+    ```javascript
+    // 改寫為async/await形式(箭頭函數)
+    (async () => {
+        // fetch取得遠端資源
+        const fetch_response_promise = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+        // 使用 fetch_response_promise.json() 將資源轉為 JSON 格式
+        const myJson = await fetch_response_promise.json();
+        console.log(myJson);
+    })();
+    ```
+    
