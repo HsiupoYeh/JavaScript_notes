@@ -247,3 +247,4 @@ JavaScript簡稱JS。
     let add_one_promise=my_add_one(5);
     console.log(add_one_promise);
     ```
+> 上面的用法不是很常見，只是用來說明宣告方式及回傳promise的特色。
