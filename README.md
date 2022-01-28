@@ -191,11 +191,13 @@ JavaScript簡稱JS。
           return x;
       }
       // 呼叫方式，呼叫非同步函數後會回傳一個Promise。
-      var add_one_result=add_one(5);
+      var add_one_promise=add_one(5);
+      console.log(add_one_promise);
       ```
       ```javascript
       // 呼叫方式，呼叫非同步函數後會回傳一個Promise。
-      var add_one_result=add_one(5);
+      var add_one_promise=add_one(5);
+      console.log(add_one_promise);
       // 陳述式宣告一個add_one的非同步函數(宣告寫在呼叫之後)。
       // 這不會回傳東西，但會在全域出現這個函數可以被使用。
       // 這個宣告不會運行，位置在哪都一樣，當Script被完整載入後就會被宣告到全域中。被稱作「提升」。
