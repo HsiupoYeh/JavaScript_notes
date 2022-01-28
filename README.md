@@ -179,3 +179,28 @@ JavaScript簡稱JS。
     });    
     ```
     > 可以想像reject、resolve兩個參數就像是特別的return命令，分別用來傳東西給then與catch的匿名函數。
+
+## 非同步函數(async function)
+  + 宣告函數(使用陳述式):
+      ```javascript
+      // 陳述式宣告一個add_one的非同步函數(宣告寫在呼叫之前)。
+      // 這不會回傳東西，但會在全域出現這個函數可以被使用。
+      // 這個宣告不會運行，位置在哪都一樣，當Script被完整載入後就會被宣告到全域中。被稱作「提升」。
+      async function add_one(x) {
+          x=x+1;
+          return x;
+      }
+      // 呼叫方式，呼叫非同步函數後會回傳一個Promise。
+      var add_one_result=add_one(5);
+      ```
+      ```javascript
+      // 呼叫方式，呼叫非同步函數後會回傳一個Promise。
+      var add_one_result=add_one(5);
+      // 陳述式宣告一個add_one的非同步函數(宣告寫在呼叫之後)。
+      // 這不會回傳東西，但會在全域出現這個函數可以被使用。
+      // 這個宣告不會運行，位置在哪都一樣，當Script被完整載入後就會被宣告到全域中。被稱作「提升」。
+      async function add_one(x) {
+          x=x+1;
+          return x;
+      }
+      ```
