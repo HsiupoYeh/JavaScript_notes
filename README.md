@@ -206,3 +206,30 @@ JavaScript簡稱JS。
           return x;
       }
       ```
+  + 函數表達式:
+      + JS的奇怪建立函數的方法，偏偏比較常用，看起來跟宣告函數超像。 
+      ```javascript
+      // 表達式宣告一個add_one的非同步函數。
+      // 會回傳物件(使這個函數成為一個物件)。
+      // 這個宣告不會運行，宣告部分要寫在呼叫之前。也就是不會被「提升」。
+      var my_add_one = async function add_one(x) {
+          x=x+1;
+          return x;
+      }
+      // 呼叫方式，呼叫非同步函數後會回傳一個Promise。
+      let add_one_promise=my_add_one(5);
+      console.log(add_one_promise);
+      ```
+      ```javascript
+      // 表達式宣告一個匿名非同步函數。
+      // 會回傳物件(使這個函數成為一個物件)。
+      // 這個宣告不會運行，宣告部分要寫在呼叫之前。也就是不會被「提升」。
+      // function後面不寫名字叫做匿名函數，通常給名字是讓內部呼叫用的，否則寫了也是白寫。
+      var my_add_one = async function(x) {
+          x=x+1;
+          return x;
+      }
+      // 呼叫方式，呼叫非同步函數後會回傳一個Promise。
+      let add_one_promise=my_add_one(5);
+      console.log(add_one_promise);
+      ```
