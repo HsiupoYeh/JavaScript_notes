@@ -248,3 +248,9 @@ JavaScript簡稱JS。
     console.log(add_one_promise);
     ```
 > 上面的用法不是很常見，只是用來說明宣告方式及回傳promise的特色。
++ await函數:
+  + 只有在async函數中可以使用await函數。 
+  + await專門作用於promise，會卡住async函數直到promise有結果，回傳resolve或reject或錯誤。
+  > 可以想成在主線程之外async另開了一個單執行緒，若裡面產生一個promise等同又再開一個執行續，此時兩個執行續會各自一起運行著。  
+  > 但在async函數中出現await關鍵字控制的promise時，async執行緒(可想像為父層)暫停運行，等待await控制的promise(可想像為子層)回傳結果後，才回到async執行緒繼續運行。  
+  > 因此await會讓程式碼看起來類似父層下的子層工作都是同步的(阻塞的)，但其實只是被卡住而照順序的非同步函數，但都不會影響真正的主線程，使得不熟悉callback與promise的人也能容易讀懂與設計。
