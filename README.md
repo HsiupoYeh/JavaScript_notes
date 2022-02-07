@@ -301,4 +301,18 @@ JavaScript簡稱JS。
         console.log(myJson);
     })();
     ```
+    ```javascript
+    // 改寫為async/await形式(箭頭函數)
+    (async () => {
+        // fetch取得遠端資源
+        const fetch_response_promise = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+        // 使用 fetch_response_promise.json() 將資源轉為 JSON 格式
+        const myJson = await fetch_response_promise.json();
+        console.log(myJson);
+        // async中等待1000ms
+        await new Promise( resolve => setTimeout(resolve, 1000));
+        console.log('1000ms過去!');
+    })();
+    ```    
+
     
